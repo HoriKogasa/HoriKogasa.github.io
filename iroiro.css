@@ -12,3 +12,25 @@ p
 {
   color:green;
 }
+
+.image{position:relative;}
+.image::before,
+.image::after{
+  content:'';
+  position:absolute;
+  transform:rotate(-35deg);
+  width:70px;
+  height:25px;
+  background-color:#fffeee;
+  z-index:1;
+}
+.image::before{
+  top:-9px;
+  left:-25px;
+  border-bottom:1px solid #aaa;
+}
+.image::after{
+  bottom:-7px;
+  right:525px;
+  border-top:1px solid #aaa;
+}
