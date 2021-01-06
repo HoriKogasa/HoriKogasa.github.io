@@ -13,6 +13,12 @@ p
   color:green;
 }
 
+div
+{
+  margin-top:30px;
+  margin-left:100px;
+}
+
 .image{position:relative;}
 .image::before,
 .image::after{
@@ -31,6 +37,6 @@ p
 }
 .image::after{
   bottom:-7px;
-  right:525px;
+  left:155px;
   border-top:1px solid #aaa;
 }
