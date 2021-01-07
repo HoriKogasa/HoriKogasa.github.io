@@ -1,36 +1,49 @@
 @charset "UTF-8";
 body
 {
-  background-color: #fffeee;
+  background-image:linear-gradient(#ab6bbf,#7023aa);
+  min-height: 100vh;
 }
+
 h1
 {
-  color:red;
+  font-family:'Sawarabi Mincho';
+  color:#ffffff;
+  letter-spacing: 10px;
+  margin-left:20px;
+  margin-top:30px;
 }
 
-p
+.komand
 {
-  color:green;
+  font-family: 'Noto Serif JP';
+  font-size: 20px;
+  width:270px;
+  color:#ffffff;
+  border-width:5px;
+  border-style:double;
+  border-color:#ffffff;
+  padding:7px;
+  margin-left:100px;
+  margin-top: 30px;
+  letter-spacing: 7px;
 }
 
-.image{position:relative;}
-.image::before,
-.image::after{
-  content:'';
-  position:absolute;
-  transform:rotate(-35deg);
-  width:70px;
-  height:25px;
-  background-color:#fffeee;
-  z-index:1;
+.senwo
+{
+  border-top:0px;
+  border-color:#b79cbf;
+  border-style:solid;
+
 }
-.image::before{
-  top:-9px;
-  left:-25px;
-  border-bottom:1px solid #aaa;
+
+#keikun
+{
+  padding-left:90px;
 }
-.image::after{
-  bottom:-7px;
-  right:525px;
-  border-top:1px solid #aaa;
+
+.kontena
+{
+  padding-top:40px;
+  display:flex;
 }
