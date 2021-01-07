@@ -29,21 +29,47 @@ h1
   letter-spacing: 7px;
 }
 
+<<<<<<< HEAD
 .senwo
 {
   border-top:0px;
   border-color:#b79cbf;
   border-style:solid;
 
+=======
+div
+{
+  margin-top:30px;
+  margin-left:100px;
+}
+
+.image{position:relative;}
+.image::before,
+.image::after{
+  content:'';
+  position:absolute;
+  transform:rotate(-35deg);
+  width:70px;
+  height:25px;
+  background-color:#fffeee;
+  z-index:1;
+>>>>>>> 63af422eaa55065921fd60a1529dabcce00dff20
 }
 
 #keikun
 {
   padding-left:90px;
 }
+<<<<<<< HEAD
 
 .kontena
 {
   padding-top:40px;
   display:flex;
+=======
+.image::after{
+  bottom:-7px;
+  left:155px;
+  border-top:1px solid #aaa;
+>>>>>>> 63af422eaa55065921fd60a1529dabcce00dff20
 }
