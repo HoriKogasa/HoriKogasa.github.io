@@ -1,0 +1,47 @@
+@charset "UTF-8";
+body
+{
+  background-image:linear-gradient(#ab6bbf,#7023aa);
+  min-height: 100vh;
+}
+
+h1
+{
+  font-family:'Sawarabi Mincho';
+  color:#ffffff;
+  letter-spacing: 10px;
+  margin-left:20px;
+  margin-top:30px;
+}
+
+.komand
+{
+  font-family: 'Noto Serif JP';
+  font-size: 20px;
+  width:270px;
+  color:#ffffff;
+  border-width:5px;
+  border-style:double;
+  border-color:#ffffff;
+  padding:7px;
+  margin-left:100px;
+  margin-top: 30px;
+  letter-spacing: 7px;
+}
+
+.senwo
+{
+  border-top:0px;
+  border-color:#b79cbf;
+  border-style:solid;
+
+.keikun
+{
+  padding-left:90px;
+}
+
+.kontena
+{
+  padding-top:40px;
+  display:flex;
+}
