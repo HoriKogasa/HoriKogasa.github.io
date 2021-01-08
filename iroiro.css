@@ -7,11 +7,12 @@ body
 
 h1
 {
-  font-family:'Sawarabi Mincho';
+  font-family:"Sawarabi Mincho";
   color:#ffffff;
   letter-spacing: 10px;
   margin-left:20px;
-  margin-top:30px;
+  margin-top:50px;
+  font-size: 40px;
 }
 
 .komand
@@ -29,16 +30,29 @@ h1
   letter-spacing: 7px;
 }
 
+.yokudeki
+{
+  font-family:inherit;
+  font-size:20px;
+  letter-spacing: 5px;
+  margin-left:12px;
+}
+
 .senwo
 {
+  margin-top:50px;
   border-top:0px;
   border-color:#b79cbf;
   border-style:solid;
+  margin-left:15px;
+  margin-right: 15px;
 }
 
 #keikun
 {
-  padding-left:90px;
+  margin-top:40px;
+  margin-left:90px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
 
 .kontena
