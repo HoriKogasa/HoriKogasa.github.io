@@ -19,7 +19,7 @@ h1
 {
   font-family: 'Noto Serif JP';
   font-size: 20px;
-  width:270px;
+  width:295px;
   color:#ffffff;
   border-width:5px;
   border-style:double;
@@ -46,8 +46,8 @@ h1
   border-top:0px;
   border-color:#b79cbf;
   border-style:solid;
-  margin-left:15px;
-  margin-right: 15px;
+  margin-left:25px;
+  margin-right: 25px;
 }
 
 #keikun
@@ -61,4 +61,41 @@ h1
 {
   padding-top:40px;
   display:flex;
+}
+.sitano
+{
+  display:flex;
+}
+
+main{
+  width:75%;
+}
+
+aside
+{
+  width:25%;
+  color:#ffffff;
+  margin-left:10px;
+  margin-right:40px;
+  margin-top:30px;
+}
+
+aside img{
+  margin-top:30px;
+  height:150px;
+  width:190px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+
+aside h2
+{
+  font-family: 'Noto Serif JP';
+  font-size:18px;
+}
+
+aside p
+{
+  font-size:14px;
+  text-align:justify;
+  margin-top:10px;
 }
