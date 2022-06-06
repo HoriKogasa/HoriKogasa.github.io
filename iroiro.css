@@ -25,9 +25,17 @@ h1
   border-style:double;
   border-color:#ffffff;
   padding:7px;
-  margin-left:100px;
+  margin-left:30%;
   margin-top: 30px;
   letter-spacing: 7px;
+  text-align:center;
+}
+
+.honbun
+{
+  color:#ffffff;
+  margin-left:10%;
+  margin-right:10%;
 }
 
 #yokudeki
@@ -46,14 +54,14 @@ h1
   border-top:0px;
   border-color:#b79cbf;
   border-style:solid;
-  margin-left:25px;
+  margin-left:15px;
   margin-right: 25px;
 }
 
 #keikun
 {
   margin-top:40px;
-  margin-left:90px;
+  margin-left:8%;
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
 
@@ -98,4 +106,9 @@ aside p
   font-size:14px;
   text-align:justify;
   margin-top:10px;
+}
+
+iframe
+{
+  margin-left:27%;
 }
