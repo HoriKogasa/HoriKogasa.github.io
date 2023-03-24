@@ -173,6 +173,6 @@ Module['FS_createPath']('/Yasumi423/Content', 'Paks', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 53, "filename": "/Manifest_NonUFSFiles_HTML5.txt"}, {"start": 53, "audio": 0, "end": 91, "filename": "/UE4CommandLine.txt"}, {"start": 91, "audio": 0, "end": 30378337, "filename": "/Yasumi423/Content/Paks/Yasumi423-HTML5.pak"}], "remote_package_size": 30378337, "package_uuid": "8f8fdd11-5380-480f-9467-5dbd219c743f"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 53, "filename": "/Manifest_NonUFSFiles_HTML5.txt"}, {"start": 53, "audio": 0, "end": 91, "filename": "/UE4CommandLine.txt"}, {"start": 91, "audio": 0, "end": 30385757, "filename": "/Yasumi423/Content/Paks/Yasumi423-HTML5.pak"}], "remote_package_size": 30385757, "package_uuid": "e713e0a7-051b-43a2-924b-0f8fb43abb7c"});
 
 })();
