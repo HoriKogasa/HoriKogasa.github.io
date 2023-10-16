@@ -6,21 +6,23 @@
     <title>Web BLE</title>
     <style>
         button {
-            font-size: 20px;
-            margin: 10px;
+            font-size: 30px;
+            margin: 15px;
         }
     </style>
 </head>
 <body>
-終わったらDisconnectしてください🙇<br>
+  iOSはScanしてSmartLockを選択<br>
+  Androidは不明なデバイスに接続<br>
+
+
 <button id="scanButton">Scan for Devices</button>
 <button id="closeButton" disabled>閉める</button>
 <button id="openButton" disabled>あける</button>
 <button id="disconnectButton" disabled>Disconnect</button>
-
-    <br><br>
-  iOSはScanしてSmartLockを選択<br>
-  Androidは不明なデバイスに接続<br>
+  
+<br>
+  終わったらDisconnectしてください🙇<br>
 
 <script>
     document.getElementById('scanButton').addEventListener('click', async () => {
