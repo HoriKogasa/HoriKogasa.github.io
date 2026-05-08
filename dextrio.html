@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEXTRIO | Official Website</title>
+    <meta name="description" content="2人のプレイヤーで3体のキャラクターを操作するマルチプレイアクションゲーム「DEXTRIO」公式ウェブサイト。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #050508;
+            --color-text: #ffffff;
+            --color-left: #ff2a5f;
+            --color-right: #00f0ff;
+            --glass-bg: rgba(20, 20, 25, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Dynamic Background */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            display: flex;
+        }
+
+        .bg-glow-left {
+            flex: 1;
+            background: radial-gradient(circle at 0% 50%, rgba(255, 42, 95, 0.15) 0%, transparent 60%);
+        }
+
+        .bg-glow-right {
+            flex: 1;
+            background: radial-gradient(circle at 100% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 60%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--color-left) 0%, var(--color-left) 50%, var(--color-right) 50%, var(--color-right) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 240, 255, 0.2);
+        }
+
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .feature-card.left::before {
+            background: var(--color-left);
+            box-shadow: 0 0 15px var(--color-left);
+        }
+
+        .feature-card.right::before {
+            background: var(--color-right);
+            box-shadow: 0 0 15px var(--color-right);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(40, 40, 50, 0.8);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+            }
+
+            50% {
+                opacity: 0.8;
+                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+            }
+
+            100% {
+                opacity: 1;
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Dynamic Background -->
+    <div class="bg-glow">
+        <div class="bg-glow-left"></div>
+        <div class="bg-glow-right"></div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="logo">DEXTRIO</h1>
+            <p class="tagline">2人のプレイヤー、3体のキャラクター。<br>前代未聞のCo-opマルチプレイアクション</p>
+
+            <div class="hero-image-wrapper">
+                <!-- 生成した画像をここに配置 -->
+                <img src="dextrio_keyvisual.png" alt="Dextrio Key Visual" class="hero-image">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <h2 class="section-title">ABOUT</h2>
+            <div class="glass-panel" style="text-align: center;">
+                <h3 style="font-size: 2rem; margin-bottom: 20px;">脳を分断し、同期せよ。</h3>
+                <p style="font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto;">
+                    DEXTRIO（デクストリオ）は、「2人のプレイヤー」が協力して「3体のキャラクター」を同時に動かすという、極めて特殊な操作感を持つマルチプレイアクションゲームです。<br><br>
+                    自身の右手と左手で別々の操作を行いながら、さらにもう一人のプレイヤーとも完璧に息を合わせなければなりません。<br>
+                    未体験のカオスと連携が生み出す、新しい協力アクションを体感せよ。
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section">
+            <h2 class="section-title">FEATURES</h2>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card left">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">マルチタスクの極致</h3>
+                    <p style="color: #aaa;">左手と右手で、それぞれ全く異なる役割の操作を行います。脳の処理能力の限界に挑む、極限のマルチタスクアクション。</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card right">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">究極のCo-op体験</h3>
+                    <p style="color: #aaa;">2人で3体を動かすため、お互いの役割分担とカバーリングが必要不可欠です。言葉だけでなく、プレイそのもので意思疎通を図りましょう。</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card" style="grid-column: 1 / -1; display: flex; align-items: center; gap: 30px;">
+                    <div class="feature-icon" style="font-size: 4rem; margin: 0;">⚔️</div>
+                    <div>
+                        <h3 class="feature-title">混沌の戦場を支配せよ</h3>
+                        <p style="color: #aaa;">誰がどのキャラクターをどう動かすか？パニックになりがちな操作システムを克服し、3体が完璧な連携を見せたときの爽快感は他のゲームでは味わえません。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo"
+            style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 900; letter-spacing: 2px;">DEXTRIO
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Developer (般若心経)</a>
+            <a href="https://x.com/hannya_inc" target="_blank">Contact (Support)</a>
+            <a href="policy.html">Privacy Policy</a>
+        </div>
+        <p style="color: #666; font-size: 0.9rem;">&copy; 2026 ゲーム開発サークル般若心経. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
