@@ -1,80 +1,326 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web BLE</title>
+    <title>ゲーム開発サークル般若心経</title>
+    <!-- 元のロゴをファビコンに設定 -->
+    <link rel="icon" type="image/png" href="HNSGLogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
+
     <style>
-        button {
-            font-size: 30px;
-            margin: 15px;
+        body {
+            /* 白のロゴが映えるように黒ベースの白黒調へ反転 */
+            background-color: #000000;
+            background-image: radial-gradient(#333333 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #ffffff;
+            font-family: 'Sawarabi Mincho', serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        /* セクションごとに実線(solid)と点線(dashed)を交互に配置 */
+
+        .hero {
+            border: 5px solid #ffffff;
+            /* 実線 */
+            padding: 20px;
+            margin-bottom: 50px;
+            background-color: #000000;
+            box-shadow: 10px 10px 0px #ffffff;
+        }
+
+        .hero img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 32px;
+            letter-spacing: 5px;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 3px 3px 0px #555555;
+        }
+
+        .hero p {
+            font-family: 'DotGothic16', sans-serif;
+            color: #cccccc;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 28px;
+            background: #ffffff;
+            color: #000000;
+            display: inline-block;
+            padding: 5px 20px;
+            border: 4px dashed #000000;
+            /* 内側は点線 */
+            margin-bottom: 30px;
+            box-shadow: 4px 4px 0px #ffffff;
+        }
+
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 80px;
+            padding: 20px;
+        }
+
+        .game-card {
+            width: 100%;
+            background: #000000;
+            padding: 10px;
+            text-align: left;
+            box-shadow: 6px 6px 0px #ffffff;
+            border: 3px solid #ffffff;
+            transition: transform 0.2s ease, z-index 0.2s;
+            position: relative;
+        }
+
+        /* ホバーで上に浮き上がるように */
+        .game-card:hover {
+            z-index: 10;
+            transform: scale(1.05) rotate(0deg) !important;
+        }
+
+        /* 応募作品カードは上下左右で実線と点線が交互になる市松模様配置 */
+        .game-card:nth-child(4n+1),
+        .game-card:nth-child(4n+4) {
+            border-style: solid;
+        }
+
+        .game-card:nth-child(4n+2),
+        .game-card:nth-child(4n+3) {
+            border-style: dashed;
+        }
+
+        /* ▼ ここから適当にパパーっと置かれている感を演出（角度や幅、マージンをバラバラに） ▼ */
+        .game-card:nth-child(5n+1) {
+            transform: rotate(-3deg);
+            margin-top: 20px;
+            max-width: 460px;
+        }
+
+        .game-card:nth-child(5n+2) {
+            transform: rotate(4deg) translateY(-10px);
+            margin-left: 20px;
+            max-width: 380px;
+        }
+
+        .game-card:nth-child(5n+3) {
+            transform: rotate(-2deg) translateY(15px);
+            max-width: 480px;
+        }
+
+        .game-card:nth-child(5n+4) {
+            transform: rotate(3deg) translateX(-15px);
+            max-width: 420px;
+            margin-bottom: 30px;
+        }
+
+        .game-card:nth-child(5n) {
+            transform: rotate(-4deg);
+            max-width: 440px;
+        }
+
+        /* ▲ ここまで ▲ */
+
+        .game-card-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #222222;
+            margin-bottom: 10px;
+            border: 1px dashed #ffffff;
+            /* 動画枠は点線 */
+        }
+
+        .game-card-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .game-card-title {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            color: #ffffff;
+            border-bottom: 2px solid #ffffff;
+            /* 実線 */
+            padding-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .game-card-desc {
+            font-size: 14px;
+            color: #cccccc;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .contact-area {
+            border: 4px dashed #ffffff;
+            /* 点線 */
+            padding: 30px;
+            background: #000000;
+            margin-bottom: 60px;
+            box-shadow: 10px 10px 0px #ffffff;
+        }
+
+        .contact-area a {
+            display: inline-block;
+            margin: 10px 20px;
+            color: #000000;
+            background: #ffffff;
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 24px;
+            text-decoration: none;
+            border: 3px solid #000000;
+            /* ボタンは実線 */
+            padding: 10px;
+        }
+
+        .contact-area a:hover {
+            color: #ffffff;
+            background: #000000;
+            border-color: #ffffff;
+            border-style: dashed;
+            /* ホバーで点線に */
+        }
+
+        .email-text {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 14px;
+            color: #aaaaaa;
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        footer {
+            border-top: 5px solid #ffffff;
+            /* 実線 */
+            padding: 20px;
+            background: #000000;
+            font-family: 'DotGothic16', sans-serif;
+            color: #ffffff;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffffff;
+            /* リンクは点線 */
+        }
+
+        footer a:hover {
+            color: #000000;
+            background: #ffffff;
         }
     </style>
 </head>
+
 <body>
-  iOSはScanしてSmartLockを選択<br>
-  Androidは不明なデバイスに接続<br>
 
+    <div class="container">
+        <div class="hero">
+            <!-- 元のロゴに変更 -->
+            <img src="HNSGLogo.png" alt="般若心経ロゴ">
+            <h1>ゲーム開発サークル般若心経</h1>
+            <p>== Game Development Circle ==</p>
+        </div>
 
-<button id="scanButton">Scan for Devices</button>
-<button id="closeButton" disabled>閉める</button>
-<button id="openButton" disabled>あける</button>
-<button id="disconnectButton" disabled>Disconnect</button>
-  
-<br>
-  終わったらDisconnectしてください🙇<br>
+        <div class="section-title">【 作品一覧 】</div>
 
-<script>
-    document.getElementById('scanButton').addEventListener('click', async () => {
-        try {
-            console.log('Requesting Bluetooth Device...');
-            const device = await navigator.bluetooth.requestDevice({
-                filters: [{
-                    services: ['00001221-0000-1000-8000-00805f9b34fb']
-                }]
-            });
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/KeVIZucbvwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">Sandbag:Towerforged</div>
+                <p class="game-card-desc">落下が報酬になる壺おじ風ローグライク</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/kvxF2oxxjhI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">SENSOR</div>
+                <p class="game-card-desc">自作コントローラとゲームのデモ</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/usUaNM0_s8w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">もじかける</div>
+                <p class="game-card-desc">文字を欠いて別の意味にするパズルゲーム</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/yvueqMX_xY8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">ポモドーロタワー</div>
+                <p class="game-card-desc">ポモドーロ放置ゲー</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/x8MANvls1G4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">キーコンフィグ</div>
+                <p class="game-card-desc">キーを残機にするタイピングアクション</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/WXPsK5kW0ww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">トルクディフェンダー</div>
+                <p class="game-card-desc">自転からエネルギーを得るタワーディフェンス</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/qhijC_uxprA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">橋渡シーソー</div>
+                <p class="game-card-desc">シーソーの橋渡し人</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/sDjBUseFSRU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">Mirror</div>
+                <p class="game-card-desc">同じ動きをする相手を倒すゲーム</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/vFGqHzGhBe8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">パズルロック</div>
+                <p class="game-card-desc">ロックを作るパズル　倍速再生がきもちいい</p>
+            </div>
+            <div class="game-card">
+                <div class="game-card-video"><iframe src="https://www.youtube.com/embed/4MHeDmLz_mE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <div class="game-card-title">じぶん探し</div>
+                <p class="game-card-desc">遊園地で自分探しできるゲーム</p>
+            </div>
+        </div>
 
-            console.log('Connecting to GATT Server...');
-            const server = await device.gatt.connect();
+        <div class="section-title">【 連絡・サポート 】</div>
+        <div class="contact-area">
+            <p>DMまたはメールにてご連絡ください</p>
+            <a href="https://x.com/hannya_inc" target="_blank">𝕏 @hannya_inc</a>
+            <div class="email-text">Contact: horikoga.han@gmail.com</div>
+        </div>
+    </div>
 
-            console.log('Getting Lock Service...');
-            const service = await server.getPrimaryService('00001221-0000-1000-8000-00805f9b34fb');
-
-            console.log('Getting Lock Characteristic...');
-            const characteristic = await service.getCharacteristic('00002a37-0000-1000-8000-00805f9b34fb');
-
-            // Enable buttons after successful connection
-            document.getElementById('closeButton').disabled = false;
-            document.getElementById('openButton').disabled = false;
-            document.getElementById('disconnectButton').disabled = false;
-
-            document.getElementById('closeButton').addEventListener('click', () => {
-                characteristic.writeValue(Uint8Array.of(1));
-            });
-
-            document.getElementById('openButton').addEventListener('click', () => {
-                characteristic.writeValue(Uint8Array.of(2));
-            });
-
-            document.getElementById('disconnectButton').addEventListener('click', () => {
-                device.gatt.disconnect();
-                document.getElementById('closeButton').disabled = true;
-                document.getElementById('openButton').disabled = true;
-                document.getElementById('disconnectButton').disabled = true;
-            });
-
-            device.addEventListener('gattserverdisconnected', () => {
-                console.log('Disconnected from GATT Server');
-                document.getElementById('closeButton').disabled = true;
-                document.getElementById('openButton').disabled = true;
-                document.getElementById('disconnectButton').disabled = true;
-            });
-
-        } catch (error) {
-            console.error(error);
-        }
-    });
-</script>
+    <footer>
+        <p>(C) 2021-2026 ゲーム開発サークル般若心経</p>
+        <br>
+        <a href="policy.html">>> プライバシーポリシー / Privacy Policy <<</a>
+    </footer>
 
 </body>
+
 </html>
