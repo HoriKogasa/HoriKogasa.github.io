@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,22 +57,12 @@
             font-size: 16px;
         }
 
-        .policy-ja ul {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
         .policy-en {
             color: #aaaaaa;
             font-size: 14px;
             margin-top: 15px;
             padding-left: 15px;
             border-left: 3px solid #00ffff;
-        }
-
-        .policy-en ul {
-            margin-top: 5px;
-            margin-bottom: 5px;
         }
 
         a {
@@ -105,111 +96,152 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>[ Privacy Policy / プライバシーポリシー ]</h1>
+    <div class="container">
+        <h1>[ Privacy Policy / プライバシーポリシー ]</h1>
 
-    <div class="policy-section">
-        <div class="policy-title">1. はじめに (Introduction)</div>
-        <div class="policy-ja">
-            ゲーム開発サークル般若心経（以下「当サークル」）は、提供するゲームおよびサービス（以下「本サービス」）におけるユーザーの情報の取り扱いについて、以下の通りプライバシーポリシーを定めます。
+        <div class="policy-section">
+            <div class="policy-title">1. はじめに (Introduction)</div>
+            <div class="policy-ja">
+                お客様のプライバシーは当サークルにとって重要です。本プライバシーポリシーは、当サークルのゲーム（以下「本サービス」）をプレイする際に、どのようなデータが収集、使用、または送信されるかを説明するものです。大部分のデータは、公式SDK（Epic
+                Online
+                ServicesやプラットフォームのSDKなど）を介して、お客様のデバイス上でローカルに処理されます。当サークルが直接受け取るデータは、マッチメイキング等を円滑に行うためのごく限られた情報のみです。
+            </div>
+            <div class="policy-en">
+                Your privacy matters to us. This Privacy Policy explains what data is collected, used, or transmitted
+                when you play our games. Most data is handled locally on your device via official SDKs (such as Epic
+                Online Services and platform SDKs). We only receive limited data to facilitate matchmaking and lobby
+                codes.
+            </div>
         </div>
-        <div class="policy-en">
-            Game Development Circle Hannya Shingyo (hereinafter referred to as "we" or "us") establishes the following privacy policy regarding the handling of user information in the games and services we provide (hereinafter referred to as "the Services").
+
+        <div class="policy-section">
+            <div class="policy-title">2. 収集・受信する情報 (What We Collect and Receive)</div>
+            <div class="policy-ja">
+                オンライン機能の大半はサードパーティのSDKによって提供されており、お客様のデバイス上でローカルに動作します。これらのSDK（Epic Online
+                Services等）は、ログイン、マルチプレイ、セッション管理を行うために各々のサービスと通信する場合があります。<br><br>
+                当サークルは、これらのサードパーティデータを収集、アクセス、または保存しません。私たちが受け取るデータは、マッチメイキングを円滑に行うために使用される一時的なプラットフォーム識別子（ロビーID等）に限定されています。<br><br>
+                <b>a. Epic Online Services (EOS)</b><br>
+                EOSはお客様のデバイス上で動作し、クロスプレイやマルチプレイセッションを管理します。ゲームクライアントは、マルチプレイロビーに参加するためにプラットフォームIDやディスプレイネームを他のプレイヤーと共有する場合があります。この情報はローカルに保持されるか、Epic
+                Gamesと直接共有されます。当サークルはこれを収集または保存しません。<br>
+                Epic Gamesによるデータの処理に関する詳細は、Epic Gamesのプライバシーポリシー（<a
+                    href="https://www.epicgames.com/site/ja/privacypolicy"
+                    target="_blank">https://www.epicgames.com/site/ja/privacypolicy</a>）をご覧ください。<br><br>
+                また、技術的・セキュリティ的、またはメンテナンスの目的で、お客様のIPアドレスが一時的に記録される場合があります。これらのログはプレイヤーの特定には使用されず、定期的に削除されます。
+            </div>
+            <div class="policy-en">
+                Most online features are powered by third-party SDKs and operate locally on your device. These SDKs
+                (e.g., Epic Online Services) may communicate with their respective services to handle login,
+                multiplayer, and session management.<br><br>
+                We do not collect, access, or store this third-party data. The only data we receive is limited to
+                temporary platform identifiers used only to facilitate matchmaking.<br><br>
+                <b>a. Epic Online Services (EOS)</b><br>
+                EOS operates on your device to manage cross-play and multiplayer sessions. Your game client may share
+                your platform ID and display name with other players to join multiplayer lobbies. This information
+                remains local or is shared directly with Epic Games. We do not collect or store it.<br>
+                For more details on how Epic Games processes data, please visit the Epic Games Privacy Policy: <a
+                    href="https://www.epicgames.com/site/en-US/privacypolicy"
+                    target="_blank">https://www.epicgames.com/site/en-US/privacypolicy</a>.<br><br>
+                Your IP address may be temporarily logged for technical, security, or maintenance purposes. These logs
+                are not used to identify players and are regularly rotated.
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">3. 収集しない情報 (What We Don’t Collect)</div>
+            <div class="policy-ja">
+                私たちは以下の情報を意図的に収集または保存することはありません。<br>
+                ・氏名、メールアドレス、支払情報等の個人を特定できる情報<br>
+                ・チャットログ、メッセージ、音声通信<br>
+                ・ゲームプレイデータ（一時的なロビー関連の識別子を除く）
+            </div>
+            <div class="policy-en">
+                We do not intentionally collect or store:<br>
+                - Your name, email, or payment details<br>
+                - Chat logs, messages, or voice communications<br>
+                - Gameplay data, except temporary lobby-related identifiers
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">4. データの保持 (Data Retention)</div>
+            <div class="policy-ja">
+                私たちは、ロビーIDや技術的なログ（IPアドレス等）を、サービスを運営するために必要な期間のみ保持します。ログは定期的にローテーション・削除され、ユーザーIDとは関連付けられません。
+            </div>
+            <div class="policy-en">
+                We retain lobby IDs and technical logs (such as IP addresses) only as long as necessary to operate the
+                service. Logs are regularly rotated and are not linked to user identities.
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">5. 子供のプライバシー (Children’s Privacy)</div>
+            <div class="policy-ja">
+                私たちのゲームは全年齢対象であり、すべての年齢層に適しています。私たちは、子供を含むユーザーから個人情報を収集することはありません。オンラインでのやり取りについては、保護者の方が監督し、子供が信頼できる人とだけロビーコードやプレイセッションを共有するようにすることをお勧めします。
+            </div>
+            <div class="policy-en">
+                Our game is rated E for Everyone and is suitable for all ages. We do not collect personal information
+                from users, including children. We recommend that parents and guardians supervise online interactions
+                and ensure their children only share lobby codes or play sessions with people they know and trust.
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">6. データセキュリティ (Data Security)</div>
+            <div class="policy-ja">
+                私たちは、安全な通信プロトコル（HTTPS等）を使用して転送中のデータを保護します。当サークルのシステムによって取り扱われるすべてのデータを保護するために、適切なセキュリティ対策を講じています。
+            </div>
+            <div class="policy-en">
+                We use secure communication protocols (e.g., HTTPS) to protect data in transit. We take appropriate
+                security measures to safeguard all data handled by our systems.
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">7. お客様の権利 (Your Rights)</div>
+            <div class="policy-ja">
+                もし私たちがお客様に関する何らかの個人情報を保持していると思われる場合、お客様はそのデータへのアクセス、修正、または削除を要求する権利を有します。本ポリシーに記載されている連絡先を使用して、そのような要求を行うことができます。
+            </div>
+            <div class="policy-en">
+                If you believe we hold any personal information about you, you have the right to request access,
+                correction, or deletion of that data. You can contact us using the information provided in this policy
+                to make any such requests.
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">8. ポリシーの変更 (Changes to This Policy)</div>
+            <div class="policy-ja">
+                当サークルは、本プライバシーポリシーを定期的に更新する場合があります。重要な変更がある場合は、当ウェブサイト等を通じてユーザーにお知らせします。
+            </div>
+            <div class="policy-en">
+                We may update this Privacy Policy periodically. If changes are significant, we will notify users through
+                our website or in-game.
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <div class="policy-title">9. お問い合わせ窓口 (Contact)</div>
+            <div class="policy-ja">
+                本プライバシーポリシーやお客様のデータに関するご質問がある場合は、以下までお問い合わせください。<br>
+                Email: horikoga.han@gmail.com<br>
+                X (旧Twitter): <a href="https://x.com/hannya_inc" target="_blank">@hannya_inc</a>
+            </div>
+            <div class="policy-en">
+                If you have questions about this Privacy Policy or your data, please contact us at:<br>
+                Email: horikoga.han@gmail.com<br>
+                X (Twitter): <a href="https://x.com/hannya_inc" target="_blank">@hannya_inc</a>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="index.html" class="back-link">
+                << BACK TO HOME</a>
         </div>
     </div>
-
-    <div class="policy-section">
-        <div class="policy-title">2. 収集する情報 (Information We Collect)</div>
-        <div class="policy-ja">
-            当サークルは、本サービスの提供にあたり、以下の情報を収集する場合があります（※ゲームによっては収集しない情報も含まれます）。
-            <ul>
-                <li>アカウント連携に関する情報（Epic Gamesアカウント等のディスプレイネームやID）</li>
-                <li>ゲームのプレイデータ（進行状況、実績、ランキング等）</li>
-                <li>自動的に収集される技術情報（クラッシュレポート、端末情報等）</li>
-            </ul>
-        </div>
-        <div class="policy-en">
-            We may collect the following information when providing the Services (*Note that some games may not collect all of these):
-            <ul>
-                <li>Account linking information (e.g., Epic Games account display name, ID)</li>
-                <li>Gameplay data (e.g., progress, achievements, rankings)</li>
-                <li>Automatically collected technical information (e.g., crash reports, device info)</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="policy-section">
-        <div class="policy-title">3. 情報の利用目的 (Purpose of Use)</div>
-        <div class="policy-ja">
-            収集した情報は、以下の目的で利用します。
-            <ul>
-                <li>ゲーム機能（オンライン対戦、ランキング等）の提供</li>
-                <li>バグ修正、不具合の調査、および品質の向上</li>
-                <li>ユーザーからのサポート対応</li>
-                <li>一部のアプリにおける広告の配信</li>
-            </ul>
-        </div>
-        <div class="policy-en">
-            The collected information will be used for the following purposes:
-            <ul>
-                <li>Providing game features (e.g., online matchmaking, rankings)</li>
-                <li>Fixing bugs, investigating issues, and improving quality</li>
-                <li>Providing user support</li>
-                <li>Delivering advertisements in certain applications</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="policy-section">
-        <div class="policy-title">4. 第三者への情報提供 (Provision to Third Parties)</div>
-        <div class="policy-ja">
-            当サークルは、法令の定めに基づく場合を除き、ユーザーの同意を得ることなく、収集した個人情報を第三者に提供することはありません。ただし、本サービスの機能提供や広告配信のために、Epic Online ServicesやGoogle AdMob等の信頼できる外部サービスを利用する場合があります。
-        </div>
-        <div class="policy-en">
-            We will not provide collected personal information to any third party without the user's consent, except as required by law. However, we may use trusted external services such as Epic Online Services and Google AdMob to provide features and deliver advertisements.
-        </div>
-    </div>
-
-    <div class="policy-section">
-        <div class="policy-title">5. Epic Games アカウント及び関連サービス (Epic Games Account and Related Services)</div>
-        <div class="policy-ja">
-            当サークルのゲームは、Epic Games StoreやEpic Online Servicesを利用する場合があります。連携する際、ユーザーのデータはEpic Gamesのプライバシーポリシーにも基づいて処理されます。詳細についてはEpic Gamesの公式サイトおよびプライバシーポリシーをご確認ください。
-        </div>
-        <div class="policy-en">
-            Our games may use the Epic Games Store and Epic Online Services. When linking accounts, user data is also processed in accordance with the Epic Games Privacy Policy. For details, please refer to the Epic Games official website and their privacy policy.
-        </div>
-    </div>
-
-    <div class="policy-section">
-        <div class="policy-title">6. お問い合わせ窓口 (Support & Contact)</div>
-        <div class="policy-ja">
-            本ポリシーに関するご質問や、ゲームに関するサポート・不具合報告については、以下の連絡先までお問い合わせください。<br>
-            Email: horikoga.han@gmail.com<br>
-            X (旧Twitter): <a href="https://x.com/hannya_inc" target="_blank">@hannya_inc</a>
-        </div>
-        <div class="policy-en">
-            For questions regarding this privacy policy, support, or bug reports, please contact us at:<br>
-            Email: horikoga.han@gmail.com<br>
-            X (Twitter): <a href="https://x.com/hannya_inc" target="_blank">@hannya_inc</a>
-        </div>
-    </div>
-
-    <div class="policy-section">
-        <div class="policy-title">7. 改定 (Revision)</div>
-        <div class="policy-ja">
-            当サークルは、必要に応じて本ポリシーを変更することがあります。重要な変更がある場合には、当ウェブサイト上にてお知らせいたします。
-        </div>
-        <div class="policy-en">
-            We may revise this privacy policy as necessary. If there are important changes, we will notify you on this website.
-        </div>
-    </div>
-
-    <div class="text-center">
-        <a href="index.html" class="back-link"><< BACK TO HOME</a>
-    </div>
-</div>
 
 </body>
+
 </html>
