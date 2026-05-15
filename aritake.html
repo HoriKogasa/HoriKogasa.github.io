@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有竹さんごめんなさい</title>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
+    <style>
+        @keyframes rainbowText {
+            0% {
+                color: #ff0000;
+            }
+
+            16% {
+                color: #ff7f00;
+            }
+
+            33% {
+                color: #ffff00;
+            }
+
+            50% {
+                color: #00ff00;
+            }
+
+            66% {
+                color: #0000ff;
+            }
+
+            83% {
+                color: #4b0082;
+            }
+
+            100% {
+                color: #9400d3;
+            }
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            /* 1677万色をふんだんに使ったゲーミングカラー背景 */
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite;
+            color: #ffffff;
+            font-family: 'Sawarabi Mincho', serif;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 5px dashed #ffffff;
+            padding: 50px 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.7);
+        }
+
+        h1 {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 48px;
+            text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
+            animation: rainbowText 1s linear infinite;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 28px;
+            border-bottom: 3px dashed #fff;
+            display: inline-block;
+            margin-top: 40px;
+            padding-bottom: 10px;
+        }
+
+        .reason-list {
+            text-align: left;
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 30px auto;
+            max-width: 600px;
+            background: #ffffff;
+            color: #000000;
+            padding: 30px 40px;
+            border: 4px solid #ff00ff;
+            box-shadow: 8px 8px 0px #00ffff;
+        }
+
+        .reason-list ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .reason-list li {
+            margin-bottom: 25px;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .reason-list li::before {
+            content: '🙏';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 22px;
+        }
+
+        .reason-list strong {
+            display: block;
+            font-size: 22px;
+            color: #e60000;
+            margin-bottom: 5px;
+            font-family: 'DotGothic16', sans-serif;
+        }
+
+        .bonus-reason {
+            margin-top: 30px !important;
+            border-top: 2px dashed #999;
+            padding-top: 25px;
+        }
+
+        .business-card {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 5px solid #ffffff;
+        }
+
+        .business-card p {
+            font-size: 20px;
+            font-family: 'DotGothic16', sans-serif;
+        }
+
+        .business-card img {
+            max-width: 90%;
+            height: auto;
+            border: 5px solid #fff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .business-card img:hover {
+            transform: rotate(3deg) scale(1.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            background: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 24px;
+            border: 4px solid #ffffff;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>有竹さんごめんなさい！！！！</h1>
+
+        <h2>有竹さんにごめんなさいと思う理由3選</h2>
+
+        <div class="reason-list">
+            <ul>
+                <li>
+                    <strong>一人で作らせた</strong>
+                    プログラマーが軒並み忙しいなどとほざき、コアロジックスら書いてもらった...本当にすみません。
+                </li>
+                <li>
+                    <strong>佐藤さん以外のメンバーが使えなかった</strong>
+                    足を引っ張ってしまい申し訳ありませんでした...
+                </li>
+                <li>
+                    <strong>発表とか全部任せた</strong>
+                    大舞台でのプレッシャーをすべて押し付けてしまいました...
+                </li>
+                <li class="bonus-reason">
+                    <strong>堀さんとか年上なのに割り勘だった</strong>
+                    もしよかったら私たちの名刺の用意もお願いします。
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
