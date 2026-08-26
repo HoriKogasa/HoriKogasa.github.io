@@ -1,4 +1,10 @@
-const state = { songs: [], query: "", filter: "all" };
+const state = { songs: [], query: "", sort: "average" };
+
+const rankingModes = {
+  average: { label: "平均", description: "平均は、入力されている採点者の点数だけで計算。推定値も含みます。" },
+  horikogasa: { label: "ホリ", description: "horikogasaの点数だけで順位を計算。推定値も含みます。" },
+  ask0414: { label: "アスク", description: "ask0414の点数だけで順位を計算。推定値も含みます。" },
+};
 
 const el = {
   ranking: document.querySelector("#ranking"),
@@ -8,7 +14,8 @@ const el = {
   visible: document.querySelector("#visible-count"),
   max: document.querySelector("#max-score"),
   count: document.querySelector("#song-count"),
-  high: document.querySelector("#high-count"),
+  mode: document.querySelector("#ranking-mode"),
+  description: document.querySelector("#ranking-description"),
 };
 
 function fmt(value) {
@@ -26,14 +33,31 @@ function grade(score) {
 
 function visibleSongs() {
   const q = state.query.trim().toLocaleLowerCase("ja");
-  return state.songs.filter((song) => {
-    const textMatch = !q || `${song.title} ${song.note}`.toLocaleLowerCase("ja").includes(q);
-    const filterMatch = state.filter === "all"
-      || (state.filter === "75" && song.average >= 75)
-      || (state.filter === "70" && song.average >= 70)
-      || (state.filter === "inferred" && song.confidence === "推定");
-    return textMatch && filterMatch;
+  const songs = [...state.songs];
+  songs.sort((a, b) => {
+    const aScore = a[state.sort];
+    const bScore = b[state.sort];
+    if ((aScore === null || aScore === undefined) && (bScore === null || bScore === undefined)) {
+      return b.average - a.average || a.title.localeCompare(b.title, "ja");
+    }
+    if (aScore === null || aScore === undefined) return 1;
+    if (bScore === null || bScore === undefined) return -1;
+    return bScore - aScore || b.average - a.average || b.high - a.high || a.title.localeCompare(b.title, "ja");
   });
+
+  let previous = null;
+  let displayedRank = 0;
+  songs.forEach((song, index) => {
+    const score = song[state.sort];
+    if (score === null || score === undefined) {
+      song.displayedRank = null;
+    } else {
+      if (score !== previous) displayedRank = index + 1;
+      song.displayedRank = displayedRank;
+      previous = score;
+    }
+  });
+  return songs.filter((song) => !q || `${song.title} ${song.note}`.toLocaleLowerCase("ja").includes(q));
 }
 
 function render() {
@@ -45,17 +69,26 @@ function render() {
     const node = el.template.content.cloneNode(true);
     const card = node.querySelector(".song-card");
     const linkTargets = node.querySelectorAll(".art-link, .listen");
-    node.querySelector(".rank-number").textContent = String(song.rank).padStart(2, "0");
+    node.querySelector(".rank-number").textContent = song.displayedRank === null ? "—" : String(song.displayedRank).padStart(2, "0");
     node.querySelector(".song-title").textContent = song.title;
     node.querySelector(".song-note").textContent = song.note || "—";
     node.querySelector(".average").textContent = fmt(song.average);
     node.querySelector(".h-score").textContent = fmt(song.horikogasa);
     node.querySelector(".a-score").textContent = fmt(song.ask0414);
 
+    const selectedScore = song[state.sort];
     const gradeEl = node.querySelector(".grade");
-    const g = grade(song.average);
-    gradeEl.textContent = `${g} RANK`;
-    gradeEl.classList.add(g.toLowerCase());
+    if (selectedScore === null || selectedScore === undefined) {
+      gradeEl.textContent = "NO SCORE";
+    } else {
+      const g = grade(selectedScore);
+      gradeEl.textContent = `${g} RANK`;
+      gradeEl.classList.add(g.toLowerCase());
+    }
+
+    node.querySelector(".average-score").classList.toggle("primary", state.sort === "average");
+    node.querySelector(".h-score-wrap").classList.toggle("primary", state.sort === "horikogasa");
+    node.querySelector(".a-score-wrap").classList.toggle("primary", state.sort === "ask0414");
 
     const confidence = node.querySelector(".confidence");
     confidence.textContent = song.confidence;
@@ -87,17 +120,9 @@ async function init() {
     const response = await fetch("./data.json", { cache: "no-store" });
     if (!response.ok) throw new Error("data load failed");
     state.songs = await response.json();
-    state.songs.sort((a, b) => b.average - a.average || b.high - a.high || a.title.localeCompare(b.title, "ja"));
-    let previous = null;
-    let displayedRank = 0;
-    state.songs.forEach((song, index) => {
-      if (song.average !== previous) displayedRank = index + 1;
-      song.rank = displayedRank;
-      previous = song.average;
-    });
     el.max.textContent = fmt(Math.max(...state.songs.map((song) => song.average)));
     el.count.textContent = state.songs.length;
-    el.high.textContent = state.songs.filter((song) => song.average >= 75).length;
+    el.mode.textContent = rankingModes[state.sort].label;
     render();
   } catch {
     el.ranking.innerHTML = '<div class="empty">ランキングを読み込めませんでした。時間をおいて再読み込みしてください。</div>';
@@ -112,7 +137,9 @@ el.search.addEventListener("input", (event) => {
 document.querySelectorAll(".filter").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".filter").forEach((item) => item.classList.toggle("active", item === button));
-    state.filter = button.dataset.filter;
+    state.sort = button.dataset.sort;
+    el.mode.textContent = rankingModes[state.sort].label;
+    el.description.textContent = rankingModes[state.sort].description;
     render();
   });
 });
