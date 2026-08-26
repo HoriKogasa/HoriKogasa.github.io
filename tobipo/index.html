@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="昨日から今日までに採点した跳びポ曲を、点数・サムネイル・再生リンク付きでまとめたランキング。">
+  <meta property="og:title" content="跳びポ採点会 — 曲スコアランキング">
+  <meta property="og:description" content="47曲の点数をランキング。サムネイルからすぐ聴けます。">
+  <meta property="og:type" content="website">
+  <title>跳びポ採点会 — 曲スコアランキング</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="home-link" href="/" aria-label="horikogasa.comのトップへ">HORIKOGASA.COM</a>
+    <span class="header-tag">TOBIPO SCORE ARCHIVE</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">2026.08.26 — 08.27 / ふたり採点</div>
+      <h1><span>跳びポ</span>採点会</h1>
+      <p class="lead">ラスサビ、言い直し転調、深い溜め。<br>昨日から今日までに聴いた曲を、点数順に並べました。</p>
+      <div class="summary" aria-label="集計概要">
+        <div class="summary-card accent"><span>最高平均</span><strong id="max-score">—</strong></div>
+        <div class="summary-card"><span>採点曲</span><strong id="song-count">—</strong></div>
+        <div class="summary-card"><span>75点以上</span><strong id="high-count">—</strong></div>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="ランキング絞り込み">
+      <label class="search-wrap">
+        <span>曲を探す</span>
+        <input id="search" type="search" placeholder="曲名・コメントで検索" autocomplete="off">
+      </label>
+      <div class="filter-group" role="group" aria-label="点数帯">
+        <button class="filter active" type="button" data-filter="all">全曲</button>
+        <button class="filter" type="button" data-filter="75">75点以上</button>
+        <button class="filter" type="button" data-filter="70">70点以上</button>
+        <button class="filter" type="button" data-filter="inferred">推定を含む</button>
+      </div>
+      <p class="result-count" aria-live="polite"><span id="visible-count">—</span>曲を表示</p>
+    </section>
+
+    <section class="ranking-section">
+      <div class="section-heading">
+        <h2>RANKING</h2>
+        <p>平均は、入力されている採点者の点数だけで計算。</p>
+      </div>
+      <div id="ranking" class="ranking" aria-live="polite"></div>
+      <div id="empty" class="empty" hidden>該当する曲がありません。</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>点数は会話ログから集計。<span class="estimated-mark">推定</span> は前後の投稿から紐付けたものです。</p>
+    <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">ページ上部へ ↑</a>
+  </footer>
+
+  <template id="song-template">
+    <article class="song-card">
+      <div class="rank-number" aria-label="順位"></div>
+      <a class="art-link" target="_blank" rel="noopener noreferrer">
+        <img class="art" alt="" loading="lazy">
+        <span class="play-overlay" aria-hidden="true">▶</span>
+      </a>
+      <div class="song-main">
+        <div class="song-topline">
+          <span class="grade"></span>
+          <span class="confidence"></span>
+        </div>
+        <h3 class="song-title"></h3>
+        <p class="song-note"></p>
+        <div class="score-row">
+          <div class="score primary"><span>平均</span><strong class="average"></strong></div>
+          <div class="score"><span>horikogasa</span><strong class="h-score"></strong></div>
+          <div class="score"><span>ask0414</span><strong class="a-score"></strong></div>
+        </div>
+      </div>
+      <a class="listen" target="_blank" rel="noopener noreferrer">聴く <span>↗</span></a>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
