@@ -28,7 +28,7 @@
       <div class="summary" aria-label="集計概要">
         <div class="summary-card accent"><span>最高平均</span><strong id="max-score">—</strong></div>
         <div class="summary-card"><span>採点曲</span><strong id="song-count">—</strong></div>
-        <div class="summary-card"><span>75点以上</span><strong id="high-count">—</strong></div>
+        <div class="summary-card"><span>現在の並び</span><strong id="ranking-mode">—</strong></div>
       </div>
     </section>
 
@@ -37,11 +37,10 @@
         <span>曲を探す</span>
         <input id="search" type="search" placeholder="曲名・コメントで検索" autocomplete="off">
       </label>
-      <div class="filter-group" role="group" aria-label="点数帯">
-        <button class="filter active" type="button" data-filter="all">全曲</button>
-        <button class="filter" type="button" data-filter="75">75点以上</button>
-        <button class="filter" type="button" data-filter="70">70点以上</button>
-        <button class="filter" type="button" data-filter="inferred">推定を含む</button>
+      <div class="filter-group" role="group" aria-label="ランキングの並び順">
+        <button class="filter active" type="button" data-sort="average">平均ランキング</button>
+        <button class="filter" type="button" data-sort="horikogasa">ホリランキング</button>
+        <button class="filter" type="button" data-sort="ask0414">アスクランキング</button>
       </div>
       <p class="result-count" aria-live="polite"><span id="visible-count">—</span>曲を表示</p>
     </section>
@@ -49,7 +48,7 @@
     <section class="ranking-section">
       <div class="section-heading">
         <h2>RANKING</h2>
-        <p>平均は、入力されている採点者の点数だけで計算。</p>
+        <p id="ranking-description">平均は、入力されている採点者の点数だけで計算。推定値も含みます。</p>
       </div>
       <div id="ranking" class="ranking" aria-live="polite"></div>
       <div id="empty" class="empty" hidden>該当する曲がありません。</div>
@@ -76,9 +75,9 @@
         <h3 class="song-title"></h3>
         <p class="song-note"></p>
         <div class="score-row">
-          <div class="score primary"><span>平均</span><strong class="average"></strong></div>
-          <div class="score"><span>horikogasa</span><strong class="h-score"></strong></div>
-          <div class="score"><span>ask0414</span><strong class="a-score"></strong></div>
+          <div class="score average-score primary"><span>平均</span><strong class="average"></strong></div>
+          <div class="score h-score-wrap"><span>horikogasa</span><strong class="h-score"></strong></div>
+          <div class="score a-score-wrap"><span>ask0414</span><strong class="a-score"></strong></div>
         </div>
       </div>
       <a class="listen" target="_blank" rel="noopener noreferrer">聴く <span>↗</span></a>
