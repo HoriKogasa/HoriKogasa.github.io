@@ -90,6 +90,7 @@ h1 span { color: var(--acid); }
 .summary-card.accent { border-color: var(--acid); box-shadow: 5px 5px 0 var(--acid); }
 .summary-card span { color: var(--muted); font-size: .76rem; letter-spacing: .06em; }
 .summary-card strong { font-size: 2rem; line-height: 1; }
+#ranking-mode { font-size: 1.3rem; }
 
 .controls { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 24px 0; display: grid; grid-template-columns: minmax(230px, 1fr) auto auto; gap: 20px; align-items: end; }
 .search-wrap { display: grid; gap: 8px; color: var(--muted); font-size: .75rem; }
