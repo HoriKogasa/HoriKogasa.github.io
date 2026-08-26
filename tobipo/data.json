@@ -562,5 +562,65 @@
     "thumbnail": "https://i.ytimg.com/vi/gutDdZur5P8/maxresdefault.jpg",
     "note": "マサイで遊ぶ話あり",
     "confidence": "確定"
+  },
+  {
+    "rank": 48,
+    "title": "刹那ハレーション",
+    "horikogasa": 60,
+    "ask0414": 70,
+    "average": 65,
+    "high": 70,
+    "url": "https://www.youtube.com/watch?v=o9ulMPMI1Ko&start=258",
+    "thumbnail": "https://i.ytimg.com/vi/o9ulMPMI1Ko/maxresdefault.jpg",
+    "note": "ask0414 70／horikogasa 60",
+    "confidence": "確定"
+  },
+  {
+    "rank": 49,
+    "title": "素顔のピクセル",
+    "horikogasa": 60,
+    "ask0414": 70,
+    "average": 65,
+    "high": 70,
+    "url": "https://www.youtube.com/shorts/9kRRYSLzmO0",
+    "thumbnail": "https://i.ytimg.com/vi/9kRRYSLzmO0/maxresdefault.jpg",
+    "note": "『デカすぎ』／『きれいだけどでかくはない』という反応から推定",
+    "confidence": "推定"
+  },
+  {
+    "rank": 50,
+    "title": "気づいたら片想い",
+    "horikogasa": 45,
+    "ask0414": null,
+    "average": 45,
+    "high": 45,
+    "url": "https://www.youtube.com/watch?v=7cPfffMrjpQ&start=195",
+    "thumbnail": "https://i.ytimg.com/vi/7cPfffMrjpQ/maxresdefault.jpg",
+    "note": "『言い直すだけ』という反応から控えめに推定",
+    "confidence": "推定"
+  },
+  {
+    "rank": 51,
+    "title": "#あくあ色ぱれっと",
+    "horikogasa": null,
+    "ask0414": 50,
+    "average": 50,
+    "high": 50,
+    "url": "https://www.youtube.com/watch?v=6bnaBnd4kyU&start=202",
+    "thumbnail": "https://i.ytimg.com/vi/6bnaBnd4kyU/maxresdefault.jpg",
+    "note": "共有時の『言い直すだけ』から推定",
+    "confidence": "推定"
+  },
+  {
+    "rank": 52,
+    "title": "Heart in Flames",
+    "horikogasa": 40,
+    "ask0414": null,
+    "average": 40,
+    "high": 40,
+    "url": "https://www.youtube.com/watch?v=cqWSIS4jq4E&start=193",
+    "thumbnail": "https://i.ytimg.com/vi/cqWSIS4jq4E/maxresdefault.jpg",
+    "note": "『ここなのか……？』という反応から推定",
+    "confidence": "推定"
   }
 ]
