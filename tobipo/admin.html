@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="跳びポ採点会の曲追加・点数編集ページ。">
+  <title>曲を追加・編集 — 跳びポ採点会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=4">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="home-link" href="./">← RANKING</a>
+    <span class="header-tag">TOBIPO SCORE EDITOR</span>
+  </header>
+
+  <main class="admin-main">
+    <section class="admin-hero">
+      <div class="eyebrow">OPEN SCORE EDITOR</div>
+      <h1>曲を<span>追加・編集</span></h1>
+      <p class="lead">メールでログインできれば、誰でも曲の追加と点数変更ができます。<br>変更内容はランキングに反映されます。</p>
+    </section>
+
+    <div id="config-error" class="notice error" hidden>
+      Supabaseがまだ設定されていません。<code>supabase-config.js</code> にProject URLとPublishable keyを設定してください。
+    </div>
+
+    <section class="admin-panel" aria-labelledby="login-title">
+      <div class="panel-heading">
+        <div>
+          <p class="panel-kicker">STEP 1</p>
+          <h2 id="login-title">ログイン</h2>
+        </div>
+        <span id="auth-state" class="status-badge">未ログイン</span>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <label>
+          <span>メールアドレス</span>
+          <input id="email" type="email" required autocomplete="email" placeholder="you@example.com">
+        </label>
+        <button class="primary-button" type="submit">ログインリンクを送る</button>
+      </form>
+
+      <div id="session-panel" class="session-panel" hidden>
+        <p><strong id="session-email"></strong> でログイン中</p>
+        <button id="logout" class="secondary-button" type="button">ログアウト</button>
+      </div>
+      <p class="helper-text">届いたメールのリンクを開くとログインできます。初回も同じ操作で登録されます。</p>
+    </section>
+
+    <section id="editor-panel" class="admin-panel" aria-labelledby="editor-title" hidden>
+      <div class="panel-heading">
+        <div>
+          <p class="panel-kicker">STEP 2</p>
+          <h2 id="editor-title">曲データ</h2>
+        </div>
+        <button id="reset-form" class="secondary-button" type="button">新規入力に戻す</button>
+      </div>
+
+      <form id="song-form" class="song-form">
+        <input id="song-id" type="hidden">
+        <div class="form-grid">
+          <label class="wide-field">
+            <span>曲名 *</span>
+            <input id="title" type="text" maxlength="200" required>
+          </label>
+          <label>
+            <span>horikogasa</span>
+            <input id="horikogasa" type="number" min="0" max="100" step="0.1" placeholder="未採点なら空欄">
+          </label>
+          <label>
+            <span>ask0414</span>
+            <input id="ask0414" type="number" min="0" max="100" step="0.1" placeholder="未採点なら空欄">
+          </label>
+          <label class="wide-field">
+            <span>再生URL *</span>
+            <input id="url" type="url" required placeholder="https://www.youtube.com/watch?v=...">
+          </label>
+          <label class="wide-field">
+            <span>サムネイルURL *</span>
+            <input id="thumbnail" type="url" required placeholder="YouTube URLなら自動入力されます">
+          </label>
+          <label>
+            <span>確度</span>
+            <select id="confidence">
+              <option value="確定">確定</option>
+              <option value="推定">推定</option>
+            </select>
+          </label>
+          <label class="wide-field">
+            <span>コメント</span>
+            <textarea id="note" maxlength="1000" rows="4"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button id="save-song" class="primary-button" type="submit">この曲を保存</button>
+          <span id="editing-label" class="helper-text">新しい曲を追加します</span>
+        </div>
+      </form>
+    </section>
+
+    <section class="admin-panel" aria-labelledby="songs-title">
+      <div class="panel-heading">
+        <div>
+          <p class="panel-kicker">SONGS</p>
+          <h2 id="songs-title">登録曲 <span id="admin-song-count">—</span></h2>
+        </div>
+        <button id="import-legacy" class="secondary-button" type="button" hidden>既存のdata.jsonを取り込む</button>
+      </div>
+      <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+      <div id="admin-song-list" class="admin-song-list"></div>
+    </section>
+  </main>
+
+  <template id="admin-song-template">
+    <article class="admin-song-row">
+      <div>
+        <h3 class="admin-song-title"></h3>
+        <p class="admin-song-scores"></p>
+      </div>
+      <button class="edit-song secondary-button" type="button">編集</button>
+    </article>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="./supabase-config.js?v=4" defer></script>
+  <script src="./admin.js?v=4" defer></script>
+</body>
+</html>

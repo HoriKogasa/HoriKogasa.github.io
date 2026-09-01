@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="昨日から今日までに採点した跳びポ曲を、点数・サムネイル・再生リンク付きでまとめたランキング。">
   <meta property="og:title" content="跳びポ採点会 — 曲スコアランキング">
-  <meta property="og:description" content="47曲の点数をランキング。サムネイルからすぐ聴けます。">
+  <meta property="og:description" content="跳びポ曲の点数をランキング。サムネイルからすぐ聴けます。">
   <meta property="og:type" content="website">
   <title>跳びポ採点会 — 曲スコアランキング</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=3">
+  <link rel="stylesheet" href="./styles.css?v=4">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
   <header class="site-header">
     <a class="home-link" href="/" aria-label="horikogasa.comのトップへ">HORIKOGASA.COM</a>
-    <span class="header-tag">TOBIPO SCORE ARCHIVE</span>
+    <div class="header-actions">
+      <span class="header-tag">TOBIPO SCORE ARCHIVE</span>
+      <a id="edit-link" class="edit-link" href="./admin.html" hidden>曲を追加・編集</a>
+    </div>
   </header>
 
   <main>
@@ -84,6 +87,8 @@
     </article>
   </template>
 
-  <script src="./app.js?v=3" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="./supabase-config.js?v=4" defer></script>
+  <script src="./app.js?v=4" defer></script>
 </body>
 </html>

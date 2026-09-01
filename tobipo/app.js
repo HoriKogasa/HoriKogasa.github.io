@@ -18,6 +18,21 @@ const el = {
   description: document.querySelector("#ranking-description"),
 };
 
+function numberOrNull(value) {
+  if (value === null || value === undefined || value === "") return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function normalizeSong(song) {
+  const horikogasa = numberOrNull(song.horikogasa);
+  const ask0414 = numberOrNull(song.ask0414);
+  const scores = [horikogasa, ask0414].filter((score) => score !== null);
+  const average = scores.length ? scores.reduce((sum, score) => sum + score, 0) / scores.length : null;
+  const high = scores.length ? Math.max(...scores) : null;
+  return { ...song, horikogasa, ask0414, average, high };
+}
+
 function fmt(value) {
   if (value === null || value === undefined) return "—";
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
@@ -37,19 +52,19 @@ function visibleSongs() {
   songs.sort((a, b) => {
     const aScore = a[state.sort];
     const bScore = b[state.sort];
-    if ((aScore === null || aScore === undefined) && (bScore === null || bScore === undefined)) {
-      return b.average - a.average || a.title.localeCompare(b.title, "ja");
+    if (aScore === null && bScore === null) {
+      return (b.average ?? -Infinity) - (a.average ?? -Infinity) || a.title.localeCompare(b.title, "ja");
     }
-    if (aScore === null || aScore === undefined) return 1;
-    if (bScore === null || bScore === undefined) return -1;
-    return bScore - aScore || b.average - a.average || b.high - a.high || a.title.localeCompare(b.title, "ja");
+    if (aScore === null) return 1;
+    if (bScore === null) return -1;
+    return bScore - aScore || (b.average ?? -Infinity) - (a.average ?? -Infinity) || (b.high ?? -Infinity) - (a.high ?? -Infinity) || a.title.localeCompare(b.title, "ja");
   });
 
   let previous = null;
   let displayedRank = 0;
   songs.forEach((song, index) => {
     const score = song[state.sort];
-    if (score === null || score === undefined) {
+    if (score === null) {
       song.displayedRank = null;
     } else {
       if (score !== previous) displayedRank = index + 1;
@@ -57,7 +72,7 @@ function visibleSongs() {
       previous = score;
     }
   });
-  return songs.filter((song) => !q || `${song.title} ${song.note}`.toLocaleLowerCase("ja").includes(q));
+  return songs.filter((song) => !q || `${song.title} ${song.note ?? ""}`.toLocaleLowerCase("ja").includes(q));
 }
 
 function render() {
@@ -78,7 +93,7 @@ function render() {
 
     const selectedScore = song[state.sort];
     const gradeEl = node.querySelector(".grade");
-    if (selectedScore === null || selectedScore === undefined) {
+    if (selectedScore === null) {
       gradeEl.textContent = "NO SCORE";
     } else {
       const g = grade(selectedScore);
@@ -115,12 +130,48 @@ function render() {
   el.empty.hidden = songs.length !== 0;
 }
 
+function hasSupabaseConfig() {
+  const config = window.TOBIPO_CONFIG;
+  return Boolean(
+    window.supabase &&
+    config?.url &&
+    config?.publishableKey &&
+    !config.url.includes("YOUR_PROJECT") &&
+    !config.publishableKey.includes("YOUR_PUBLISHABLE_KEY")
+  );
+}
+
+async function loadFromSupabase() {
+  if (!hasSupabaseConfig()) return null;
+  const config = window.TOBIPO_CONFIG;
+  const client = window.supabase.createClient(config.url, config.publishableKey);
+  const { data, error } = await client
+    .from("songs")
+    .select("id,title,horikogasa,ask0414,url,thumbnail,note,confidence,created_at,updated_at");
+  if (error) throw error;
+  return data.length ? data.map(normalizeSong) : null;
+}
+
+async function loadLegacyData() {
+  const response = await fetch("./data.json", { cache: "no-store" });
+  if (!response.ok) throw new Error("data load failed");
+  const songs = await response.json();
+  return songs.map(normalizeSong);
+}
+
 async function init() {
   try {
-    const response = await fetch("./data.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("data load failed");
-    state.songs = await response.json();
-    el.max.textContent = fmt(Math.max(...state.songs.map((song) => song.average)));
+    const editLink = document.querySelector("#edit-link");
+    if (editLink) editLink.hidden = !hasSupabaseConfig();
+    let songs = null;
+    try {
+      songs = await loadFromSupabase();
+    } catch (error) {
+      console.warn("Supabaseから読み込めなかったため、data.jsonを使用します。", error);
+    }
+    state.songs = songs ?? await loadLegacyData();
+    const averages = state.songs.map((song) => song.average).filter((score) => score !== null);
+    el.max.textContent = averages.length ? fmt(Math.max(...averages)) : "—";
     el.count.textContent = state.songs.length;
     el.mode.textContent = rankingModes[state.sort].label;
     render();
